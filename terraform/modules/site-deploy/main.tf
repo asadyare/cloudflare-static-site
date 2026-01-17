@@ -5,7 +5,8 @@ locals {
 }
 
 resource "cloudflare_r2_bucket" "site" {
-  name = local.r2_bucket_name
+account_id = var.cf_account_id
+name = local.r2_bucket_name
 }
 
 resource "cloudflare_r2_bucket_object" "site_files" {
@@ -22,17 +23,18 @@ resource "cloudflare_r2_bucket_object" "site_files" {
 }
 
 resource "cloudflare_zone" "dns" {
-  account_id = var.cf_account_id
-  zone       = var.domain_name
+account = var.cf_account_id
+name = var.domain_name
 }
 
+
 resource "cloudflare_dns_record" "env" {
-  zone_id = cloudflare_zone.dns.id
-  name    = local.env_subdomain
-  type    = "CNAME"
-  value   = var.domain_name
-  ttl     = 1
-  proxied = true
+zone_id = cloudflare_zone.dns.id
+name = local.env_subdomain
+type = "CNAME"
+content = var.domain_name
+ttl = 1
+proxied = true
 }
 
 resource "cloudflare_zone_dnssec" "dnssec" {
@@ -47,9 +49,5 @@ locals {
   ]
 }
 
-resource "cloudflare_cache_purge" "site" {
-  zone_id = cloudflare_zone.dns.id
-  files   = local.purge_urls
 
-  depends_on = [cloudflare_r2_bucket_object.site_files]
-}
+
