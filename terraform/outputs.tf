@@ -1,7 +1,7 @@
-output "bucket_name" {
-  value = module.site_deploy.bucket_name
+output "pages_project_name" {
+  value = module.site_deploy.pages_project_name
 }
 
-output "uploaded_files" {
-  value = module.site_deploy.uploaded_files
+output "dns_record_name" {
+  value = cloudflare_dns_record.pages.name
 }
