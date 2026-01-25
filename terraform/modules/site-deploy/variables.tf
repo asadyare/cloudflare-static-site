@@ -3,7 +3,7 @@ variable "project_name" {
   description = "Name of the site deployment project"
 }
 
-variable "cf_account_id" {
+variable "CLOUDFLARE_ACCOUNT_ID" {
   type        = string
   description = "Cloudflare Account ID"
 }

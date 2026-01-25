@@ -1,6 +1,6 @@
 module "site_deploy" {
   source        = "./modules/site-deploy"
-  cf_account_id = var.cf_account_id
+  CLOUDFLARE_ACCOUNT_ID = var.CLOUDFLARE_ACCOUNT_ID
   project_name  = var.project_name
 
 }
@@ -8,7 +8,7 @@ module "site_deploy" {
 resource "cloudflare_zone" "dns" {
   name = var.domain_name
   account = {
-    id = var.cf_account_id
+    id = var.CLOUDFLARE_ACCOUNT_ID
   }
 }
 
