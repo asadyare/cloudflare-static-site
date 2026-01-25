@@ -1,7 +1,7 @@
 module "site_deploy" {
-  source        = "./modules/site-deploy"
+  source                = "./modules/site-deploy"
   CLOUDFLARE_ACCOUNT_ID = var.CLOUDFLARE_ACCOUNT_ID
-  project_name  = var.project_name
+  project_name          = var.project_name
 
 }
 
