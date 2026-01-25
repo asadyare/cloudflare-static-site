@@ -1,5 +1,5 @@
 module "site_deploy" {
-  source         = "./modules/site-deploy"
+  source        = "./modules/site-deploy"
   cf_account_id = var.cf_account_id
   project_name  = var.project_name
 }
