@@ -50,10 +50,18 @@ jobs:
       - name: NPM audit
         run: npm audit --audit-level=high
 
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+         fetch-depth: 0   # ensures full history for PR scans
+
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+         GITHUB_TOKEN: ${{ github.token }}
+        with:
+         args: detect --redact --report-format sarif --report-path results.sarif --verbose
+
 
       - name: Run Semgrep
         uses: returntocorp/semgrep-action@v1
