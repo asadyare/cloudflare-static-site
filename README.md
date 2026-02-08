@@ -1,80 +1,85 @@
-# DevSecOps Portfolio Summary
+# Frontend Portfolio
+
+## Summary
+
+### Overview
+
+This repository hosts the Cloudflare Pages frontend portfolio application. The repository focuses on application code and deployment. Shared security logic lives in separate repositories to keep this repository minimal and clear.
 
 ## Tech Stack
 
-- Node.js 20 + npm  
-- Docker containers (multi-stage, non-root)  
-- Terraform for infrastructure as code  
-- GitHub Actions for CI CD  
-- Cloudflare for DNS and edge security  
+- Node.js 20 with npm  
+- React with Vite and Tailwind CSS  
+- Cloudflare Pages for hosting and preview deployments  
+- Docker for local builds and security scanning  
+- GitHub Actions for CI and deployment  
 
-## CI CD Security Workflows
+## Repository Scope
 
-### Pull Request Workflow
+This repository contains only frontend source code and deployment workflows.
 
-- Gitleaks for secrets scanning  
-- Semgrep for static code analysis  
-- npm audit for dependency vulnerabilities  
-- Docker build & Trivy image scan  
+All reusable security workflows run from connected repositories and are consumed through workflow calls:
 
-### Main Branch Workflow
+- portfolio-ci-cd-security  
+- portfolio-daily-security  
+- portfolio-threat-model  
+- portfolio-k8s-security  
 
-- Re-run all PR security checks  
-- Terraform fmt & validate  
-- Checkov + Custom Policies (HTTPS, TLS)  
-- Terraform apply only if all security checks pass  
+## CI and Deployment Flow
 
-### Weekly Scheduled Security Scan
+### Pull Request Flow
 
-- Continuous scanning of code, dependencies, containers, and Terraform policies  
-- Detects newly discovered vulnerabilities  
+On every pull request, GitHub Actions triggers shared security workflows from the connected repositories.
 
-## Evidence & Badges
+Checks include:
 
-![PR Security](https://github.com/OWNER/REPO/actions/workflows/pr-security.yml/badge.svg)  
-![Main Deploy](https://github.com/OWNER/REPO/actions/workflows/main-deploy.yml/badge.svg)  
-![Weekly Scan](https://github.com/OWNER/REPO/actions/workflows/weekly-security.yml/badge.svg)  
+- Secret scanning  
+- Static analysis  
+- Dependency auditing  
+- Docker build  
+- Container image scanning  
 
-## Architecture Overview
+When all checks pass, Cloudflare Pages creates a preview deployment. GitHub posts the preview URL as a pull request comment.
 
-```mermaid
-flowchart TD
-    A[Developer Workstation] -->|Push / PR| B[GitHub Repository (Source Code)]
-    
-    B --> C[GitHub Actions CI CD]
+### Main Branch Flow
 
-    subgraph PR_Workflow["PR Security Workflow"]
-        C --> D1[Gitleaks (Secrets)]
-        C --> D2[Semgrep (Code)]
-        C --> D3[npm audit (Dependencies)]
-        C --> D4[Docker Build & Trivy Scan]
-    end
+On every push to the main branch, the same shared security workflows run again.
 
-    subgraph Main_Workflow["Main Branch Workflow"]
-        C --> M1[Re-run all PR security checks]
-        C --> M2[Terraform fmt & validate]
-        C --> M3[Checkov + Custom Policies]
-        C --> M4[Terraform apply (if all pass)]
-    end
+When checks pass, the site builds and deploys to Cloudflare Pages production.
 
-    M4 --> E[Cloudflare DNS & Edge (HTTPS/TLS Only)]
-    E --> F[Node Application in Docker]
+### Manual Infrastructure Flow
 
-    %% Trust Boundaries
-    classDef tb fill:#fef3c7,stroke:#f59e0b,stroke-width:2px;
-    class A,B,C,E,F tb;
-```
+A manual workflow supports Terraform formatting, validation, and apply. This workflow exists only for controlled infrastructure changes.
 
-## Incident Response Summary
+## Security Tooling Source
 
-- PR or main branch security failures block merges or deployments  
-- Developers notified automatically, must fix issues before re-run  
-- Weekly scans highlight residual risk or newly discovered vulnerabilities  
-- All logs available in GitHub Actions for auditing  
+Security tools run from shared workflow repositories:
 
-## Residual Risk & Limitations
+- Gitleaks  
+- Semgrep  
+- npm audit  
+- Trivy  
 
-- Zero risk does not exist; remaining risk comes from zero-day vulnerabilities and third-party dependencies  
-- Cloudflare outages or misconfigurations may temporarily impact availability  
-- Scheduled scans reduce exposure window but cannot prevent all supply-chain attacks  
-- Portfolio enforces policies in CI CD, but runtime application security (business logic vulnerabilities) remains the developer’s responsibility  
+This repository does not duplicate security logic.
+
+## Evidence and Status
+
+- Pull request security workflow badge reflects shared security checks  
+- Production deploy badge reflects Cloudflare Pages deployment from the main branch  
+
+## Architecture Summary
+
+1. Developer pushes code to GitHub  
+2. GitHub Actions triggers shared security workflows  
+3. Successful runs deploy preview or production builds to Cloudflare Pages  
+4. Cloudflare provides HTTPS, TLS enforcement, and edge delivery  
+
+## Incident Handling
+
+Failed security checks block preview and production deployments. Developers resolve findings before reruns. All evidence stays in GitHub Actions logs.
+
+## Residual Risk
+
+- Zero day vulnerabilities in third party dependencies  
+- Cloudflare service disruption risk  
+- Application logic flaws outside CI scope  
