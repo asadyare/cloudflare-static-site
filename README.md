@@ -12,7 +12,7 @@ This repository hosts the Cloudflare Pages frontend portfolio application. The r
 - React with Vite and Tailwind CSS  
 - Cloudflare Pages for hosting and preview deployments  
 - Docker for local builds and security scanning
-- Kubernetes for Deployment and Security  
+- Kubernetes manifests and cluster security  
 - GitHub Actions for CI and deployment  
 
 ## Repository Scope
@@ -26,7 +26,7 @@ All reusable security workflows run from connected repositories and are consumed
 3. [Kubernetes Deployment and security](https://github.com/asadyare/portfolio-k8s-microservices-deployment)
 4. [Daily security automation](https://github.com/asadyare/portfolio-daily-security)
 
-[![Frontend Architecture](diagrams/architecture.png)](diagrams/architecture.png)
+ [![Frontend Architecture](diagrams/architecture.png)](diagrams/architecture.png)
 
 ## CI and Deployment Flow
 
