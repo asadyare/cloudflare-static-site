@@ -2,10 +2,10 @@
 
 Badges
 
-[![CI Security
+[![CI Security]
 (https://github.com/asadyare/portfolio-ci-cd-security/actions/workflows/ci-security.yml/badge.svg)]
 
-[![Daily Security
+[![Daily Security]
 (https://github.com/asadyare/portfolio-daily-security/actions/workflows/security-alerting-and-reporting.yml/badge.svg)]
 
 Runtime Security Falco enabled
