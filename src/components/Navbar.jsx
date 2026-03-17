@@ -65,11 +65,13 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <a href="#top" className="flex items-center space-x-3 group">
-          <div className="relative w-11 h-11 rounded-xl flex items-center justify-center bg-white dark:bg-gray-900 ring-1 ring-gray-200/80 dark:ring-gray-700/80 group-hover:ring-primary-500/40 transition-all duration-300 overflow-hidden">
-            <span className="relative z-10 text-[15px] font-medium tracking-[0.2em] text-gray-800 dark:text-gray-100 group-hover:text-primary-500 transition-colors">
-              AH
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="relative flex items-center gap-3">
+            <div className="relative w-11 h-11 rounded-xl flex items-center justify-center bg-white dark:bg-gray-900 ring-1 ring-gray-200/80 dark:ring-gray-700/80 group-hover:ring-primary-500/40 transition-all duration-300 overflow-hidden">
+              <span className="relative z-10 text-[15px] font-medium tracking-[0.2em] text-gray-800 dark:text-gray-100 group-hover:text-primary-500 transition-colors">
+                AH
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-primary-600/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
           </div>
           <span className="font-semibold text-lg tracking-tight">My Portfolio</span>
         </a>
