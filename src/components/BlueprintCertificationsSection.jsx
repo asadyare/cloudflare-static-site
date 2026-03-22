@@ -27,18 +27,6 @@ export default function BlueprintCertificationsSection() {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-foreground font-display">
             Certifications <span className="text-gradient-neon">&amp; learning</span>
           </h2>
-          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-sm leading-relaxed">
-            Same credentials as on{' '}
-            <a
-              href="https://www.linkedin.com/in/asad-hassan-20b540313/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary font-medium hover:underline"
-            >
-              LinkedIn
-            </a>
-            — useful for recruiters verifying background quickly.
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-6xl mx-auto">
