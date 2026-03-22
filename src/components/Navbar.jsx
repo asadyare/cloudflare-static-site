@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import profilePhoto from '../assets/profile-photo.png'
 
 const navLinks = [
-  { href: '#top', id: 'top', label: 'Home' },
-  { href: '#skills', id: 'skills', label: 'Skills' },
-  { href: '#projects', id: 'projects', label: 'Projects' },
-  { href: '#pipeline', id: 'pipeline', label: 'Pipeline' },
-  { href: '#monitoring', id: 'monitoring', label: 'Monitoring' },
-  { href: '#repo', id: 'repo', label: 'Repository' },
-  { href: '#contact', id: 'contact', label: 'Contact' },
+  { href: '/#top', id: 'top', label: 'Home' },
+  { href: '/#skills', id: 'skills', label: 'Skills' },
+  { href: '/#projects', id: 'projects', label: 'Projects' },
+  { href: '/#pipeline', id: 'pipeline', label: 'Pipeline' },
+  { href: '/#monitoring', id: 'monitoring', label: 'Monitoring' },
+  { href: '/#repo', id: 'repo', label: 'Repository' },
+  { href: '/#contact', id: 'contact', label: 'Contact' },
 ]
 
 export default function Navbar() {
+  const location = useLocation()
+  const isDashboard = location.pathname === '/dashboard'
+
   const [menuOpen, setMenuOpen] = useState(false)
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -49,12 +53,18 @@ export default function Navbar() {
 
   useEffect(() => {
     const sync = () => {
+      if (location.pathname !== '/') return
       setActiveId(window.location.hash ? window.location.hash.replace('#', '') : 'top')
     }
     sync()
     window.addEventListener('hashchange', sync)
     return () => window.removeEventListener('hashchange', sync)
-  }, [])
+  }, [location.pathname])
+
+  const linkClass = (active) =>
+    `px-4 py-2 rounded-lg font-medium transition-colors ${
+      active ? 'text-primary bg-primary/20' : 'text-muted-foreground hover:text-primary hover:bg-muted'
+    }`
 
   return (
     <nav
@@ -65,7 +75,7 @@ export default function Navbar() {
       }`}
     >
       <div className="w-full px-4 py-3 flex items-center justify-between">
-        <a href="#top" className="flex items-center space-x-3 group">
+        <a href="/#top" className="flex items-center space-x-3 group">
           <div className="relative w-11 h-11 rounded-2xl bg-card ring-1 ring-border overflow-hidden shadow-[var(--shadow-neon)] group-hover:ring-primary/60 transition-all duration-300">
             <img
               src={profilePhoto}
@@ -81,21 +91,16 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = activeId === link.id
+            const isActive = !isDashboard && location.pathname === '/' && activeId === link.id
             return (
-              <a
-                key={link.id}
-                href={link.href}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  isActive
-                    ? 'text-primary bg-primary/20'
-                    : 'text-muted-foreground hover:text-primary hover:bg-muted'
-                }`}
-              >
+              <a key={link.id} href={link.href} className={linkClass(isActive)}>
                 {link.label}
               </a>
             )
           })}
+          <Link to="/dashboard" className={linkClass(isDashboard)}>
+            Live metrics
+          </Link>
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="ml-2 p-2.5 rounded-lg border border-border hover:bg-muted text-foreground transition-colors"
@@ -126,7 +131,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden px-4 pb-4 space-y-1 border-t border-border">
           {navLinks.map((link) => {
-            const isActive = activeId === link.id
+            const isActive = !isDashboard && location.pathname === '/' && activeId === link.id
             return (
               <a
                 key={link.id}
@@ -140,6 +145,15 @@ export default function Navbar() {
               </a>
             )
           })}
+          <Link
+            to="/dashboard"
+            onClick={() => setMenuOpen(false)}
+            className={`block py-3 px-4 rounded-lg font-medium text-foreground ${
+              isDashboard ? 'text-primary bg-primary/20' : 'hover:bg-muted'
+            }`}
+          >
+            Live metrics
+          </Link>
         </div>
       )}
     </nav>
