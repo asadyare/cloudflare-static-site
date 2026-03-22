@@ -38,9 +38,13 @@ export default function DashboardLive() {
       >
         <span className="font-semibold text-sm text-primary tracking-widest uppercase">Live</span>
         <h1 className="text-3xl md:text-4xl font-bold mt-2 text-foreground font-display">
-          Metrics <span className="text-gradient-neon">/metrics</span>
+          Live <span className="text-gradient-neon">observability</span>
         </h1>
-        <p className="text-muted-foreground mt-2 text-sm">
+        <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+          Demonstrates how this site exposes a standard Prometheus scrape target on the same host. On Cloudflare
+          Pages that&apos;s an edge function; on Kubernetes it&apos;s nginx + nginx-prometheus-exporter.
+        </p>
+        <p className="text-muted-foreground mt-2 text-xs">
           {lastFetch && <span>Last update {lastFetch.toLocaleTimeString()} · </span>}
           Refreshes every 5s
         </p>

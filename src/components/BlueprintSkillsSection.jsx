@@ -10,7 +10,7 @@ import {
   RectangleStackIcon,
 } from '@heroicons/react/24/outline'
 
-// Matches tools actually present in this portfolio’s repos (CI, deploy, IaC, manifests).
+// Matches tools in this portfolio’s repos (CI, Pages + Functions, deploy, IaC, K8s manifests).
 const skills = [
   {
     label: 'GitHub Actions',
@@ -24,7 +24,7 @@ const skills = [
   },
   {
     label: 'Cloudflare',
-    desc: 'Cloudflare Pages for production and PR previews',
+    desc: 'Pages (prod + PR previews), Terraform for DNS/zone, edge Functions e.g. GET /metrics',
     icon: CloudIcon,
   },
   {
@@ -68,6 +68,10 @@ export default function BlueprintSkillsSection() {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-foreground font-display">
             Core <span className="text-gradient-neon">Technologies</span>
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+            Tools I use in this portfolio&apos;s repos today—aligned with typical DevSecOps and platform engineering
+            stacks (CI security, containers, K8s, IaC, observability).
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

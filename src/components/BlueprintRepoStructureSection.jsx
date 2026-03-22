@@ -8,6 +8,7 @@ const structure = [
     indent: 0,
     items: [
       { type: 'folder', name: 'src/', indent: 1 },
+      { type: 'folder', name: 'functions/', indent: 1 },
       { type: 'folder', name: 'terraform/', indent: 1 },
       { type: 'file', name: '.github/workflows/CI.yml', indent: 1 },
     ],
@@ -89,6 +90,9 @@ export default function BlueprintRepoStructureSection() {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-foreground font-display">
             Repository <span className="text-gradient-neon">Layout</span>
           </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+            High-level map of how work is split across repos—useful for interview walkthroughs.
+          </p>
         </motion.div>
 
         <motion.div
@@ -110,8 +114,9 @@ export default function BlueprintRepoStructureSection() {
             ))}
           </div>
 
-          <div className="mt-6 text-sm text-muted-foreground">
-            This section summarizes the security lifecycle evidence across repositories (CI security workflows, Kubernetes hardening, runtime detection, and threat model docs).
+          <div className="mt-6 text-sm text-muted-foreground leading-relaxed">
+            Summarizes where to find security lifecycle evidence: CI workflows, Kubernetes &amp; Docker, scheduled
+            assurance, and threat-model artifacts (STRIDE, diagrams, risk registers).
           </div>
         </motion.div>
       </div>

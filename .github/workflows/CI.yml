@@ -52,14 +52,19 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # wrangler pages deploy bundles ./functions with dist → GET /metrics works on production & previews
       - id: pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ env.CLOUDFLARE_PAGES_PROJECT }}
-          branch: ${{ github.head_ref }}
-          directory: dist
+        run: |
+          set -e
+          OUT=$(npx wrangler pages deploy dist \
+            --project-name="${{ env.CLOUDFLARE_PAGES_PROJECT }}" \
+            --branch="${{ github.head_ref }}" 2>&1)
+          echo "$OUT"
+          URL=$(echo "$OUT" | grep -oE 'https://[a-zA-Z0-9._-]+\.pages\.dev' | head -1 || true)
+          echo "url=${URL}" >> "$GITHUB_OUTPUT"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
   pages-preview-comment:
     if: github.event_name == 'pull_request' && github.event.action != 'closed'
@@ -108,12 +113,11 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ env.CLOUDFLARE_PAGES_PROJECT }}
-          directory: dist
+      - name: Deploy to Cloudflare Pages (includes functions/)
+        run: npx wrangler pages deploy dist --project-name="${{ env.CLOUDFLARE_PAGES_PROJECT }}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
   push-image:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

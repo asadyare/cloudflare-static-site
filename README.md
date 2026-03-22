@@ -95,6 +95,17 @@ After saving, the next push to `main` (or the next run of the frontend CI workfl
 
    instead of `npm run deploy`.
 
+### `/metrics` on production (Cloudflare Pages Functions)
+
+The site serves **`GET /metrics`** (Prometheus text) via a **Pages Function** at [`functions/metrics.js`](functions/metrics.js). It runs on Cloudflare’s edge—**not** the same as nginx metrics from the Kubernetes container. Counters increment when `/metrics` is scraped (e.g. from the Monitoring section or `/dashboard`).
+
+**Requirements:**
+
+- Deploy with **Wrangler from the repository root** so `./functions` is bundled with `./dist` (CI uses `npx wrangler pages deploy dist`, not an upload of `dist` alone).
+- If you use **Connect to Git** in the Cloudflare dashboard, keep `functions/` at the repo root; Pages picks it up automatically with the normal build.
+
+After deploy, open `https://asads-portfolio.uk/metrics` (or your custom domain). The `#monitoring` section only scrolls to the UI; the browser still requests **`/metrics`** on the same host.
+
 ## Architecture diagram
 
 [![Frontend Architecture](diagrams/architecture.png)](diagrams/architecture.png)  

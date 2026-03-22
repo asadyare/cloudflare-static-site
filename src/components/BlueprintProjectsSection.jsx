@@ -22,9 +22,10 @@ const projects = [
   {
     id: 'terraform-iac',
     title: 'portfolio-frontend',
-    goal: 'React (Vite) app, Cloudflare Pages deploy, and Terraform for Cloudflare DNS / zone',
-    tech: ['React', 'Vite', 'Cloudflare Pages', 'Terraform', 'Cloudflare provider'],
-    concepts: ['PR previews + prod Pages', 'IaC in-repo', 'CI consumes shared-security'],
+    goal:
+      'React (Vite) portfolio, Cloudflare Pages deploy via Wrangler (bundles static + Pages Functions), Terraform for DNS/zone',
+    tech: ['React', 'Vite', 'Cloudflare Pages', 'Workers/Pages Functions', 'Terraform', 'Cloudflare provider'],
+    concepts: ['PR previews + production deploys', 'GET /metrics at the edge', 'CI consumes shared-security'],
     icon: CodeBracketIcon,
     repoUrl: 'https://github.com/asadyare/portfolio-frontend',
     accent: 'secondary',
@@ -77,8 +78,10 @@ export default function BlueprintProjectsSection() {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-foreground font-display">
             Core <span className="text-gradient-neon">Projects</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Repositories behind this portfolio: CI, app and IaC, Kubernetes, scheduled security, and threat modeling.
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+            Each card links to a public GitHub repo you can clone or review. Together they show how I structure
+            shared security workflows, ship a production site with CI gates, run K8s and runtime detection, automate
+            post-merge assurance, and document threats against the same systems.
           </p>
         </motion.div>
 

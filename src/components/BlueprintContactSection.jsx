@@ -67,8 +67,11 @@ export default function BlueprintContactSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground font-display">
             Let&apos;s <span className="text-gradient-neon">Connect</span>
           </h2>
-          <p className="text-muted-foreground mt-4 mb-10 leading-relaxed">
-            Interested in DevSecOps, platform engineering, or cloud security roles? Let&apos;s talk about securing infrastructure at scale.
+          <p className="text-muted-foreground mt-4 mb-10 leading-relaxed max-w-lg mx-auto">
+            Open to <strong className="text-foreground">DevSecOps</strong>,{' '}
+            <strong className="text-foreground">platform / SRE</strong>, and{' '}
+            <strong className="text-foreground">cloud security</strong> roles. If you want someone who ships pipelines
+            and manifests you can read—reach out below.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">

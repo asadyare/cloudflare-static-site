@@ -56,7 +56,7 @@ const stages = [
   },
   {
     label: 'Cloudflare Pages',
-    desc: 'After shared-security: PRs get pages-preview (dist via cloudflare/pages-action); push to main runs pages-deploy to production.',
+    desc: 'After shared-security: PRs and main use npx wrangler pages deploy dist (bundles ./functions with assets—GET /metrics works in prod).',
     icon: ArrowRightIcon,
     status: 'active',
   },
@@ -88,8 +88,12 @@ export default function BlueprintPipelineSection() {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-foreground font-display">
             CI/CD <span className="text-gradient-neon">Security Pipeline</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Same order as shared-security.yml: audit → scans → build → image → Trivy; then Pages and GHCR on success; Terraform only on manual dispatch.
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+            Same order as <code className="text-xs bg-secondary px-1 py-0.5 rounded">shared-security.yml</code>: audit
+            → secret &amp; SAST scans → build → image → Trivy; then Cloudflare Pages (
+            <code className="text-xs bg-secondary px-1 rounded">wrangler</code>, bundles{' '}
+            <code className="text-xs bg-secondary px-1 rounded">functions/</code>) and GHCR on main; Terraform only on
+            manual dispatch.
           </p>
         </motion.div>
 

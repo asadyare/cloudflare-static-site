@@ -26,13 +26,15 @@ export default function BlueprintMonitoringSection() {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-foreground font-display">
             Monitoring <span className="text-gradient-neon">Stack</span>
           </h2>
-          <p className="text-muted-foreground mt-2 text-xs">
-            Live nginx exporter series · same data as{' '}
+          <p className="text-muted-foreground mt-3 max-w-2xl mx-auto text-sm leading-relaxed">
+            Same-origin <code className="text-xs bg-secondary px-1 py-0.5 rounded">GET /metrics</code> — Prometheus text
+            from Cloudflare (edge) when deployed on Pages, or from the container image when running on Kubernetes.
+            Full view:{' '}
             <Link to="/dashboard" className="text-primary font-medium hover:underline">
-              /dashboard
+              Live metrics
             </Link>
             {lastFetch && !loading && (
-              <span className="block sm:inline sm:before:content-['_·_'] mt-1 sm:mt-0">
+              <span className="block sm:inline sm:before:content-['_·_'] mt-1 sm:mt-0 text-xs">
                 Updated {lastFetch.toLocaleTimeString()}
               </span>
             )}
