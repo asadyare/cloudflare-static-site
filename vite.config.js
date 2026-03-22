@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Mock Prometheus exposition for local dev (matches nginx-prometheus-exporter shape).
+// Mock Prometheus exposition for local dev & preview (matches nginx-prometheus-exporter shape).
 const MOCK_METRICS = `# HELP nginx_connections_active Active client connections
 # TYPE nginx_connections_active gauge
 nginx_connections_active 3
@@ -19,6 +19,15 @@ nginx_connections_writing 1
 nginx_http_requests_total 1247
 `
 
+function metricsMiddleware(req, res, next) {
+  if (req.url === '/metrics' || req.url?.startsWith('/metrics?')) {
+    res.setHeader('Content-Type', 'text/plain; version=0.0.4; charset=utf-8')
+    res.end(MOCK_METRICS)
+    return
+  }
+  next()
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -26,14 +35,10 @@ export default defineConfig({
     {
       name: 'dev-metrics-endpoint',
       configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          if (req.url === '/metrics' || req.url?.startsWith('/metrics?')) {
-            res.setHeader('Content-Type', 'text/plain; version=0.0.4; charset=utf-8')
-            res.end(MOCK_METRICS)
-            return
-          }
-          next()
-        })
+        server.middlewares.use(metricsMiddleware)
+      },
+      configurePreviewServer(server) {
+        server.middlewares.use(metricsMiddleware)
       },
     },
   ],
