@@ -43,8 +43,10 @@ const structure = [
     indent: 0,
     items: [
       { type: 'folder', name: 'risk-register/', indent: 1 },
+      { type: 'folder', name: 'ci-pipeline-threats/', indent: 1 },
       { type: 'folder', name: 'kubernetes-threats/', indent: 1 },
       { type: 'folder', name: 'frontend-threats/', indent: 1 },
+      { type: 'folder', name: 'diagrams/', indent: 1 },
     ],
   },
   {

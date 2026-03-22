@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import {
   ArrowTopRightOnSquareIcon,
   ShieldCheckIcon,
+  ShieldExclamationIcon,
   CodeBracketIcon,
   ServerStackIcon,
   CalendarDaysIcon,
@@ -48,6 +49,17 @@ const projects = [
     repoUrl: 'https://github.com/asadyare/portfolio-daily-security',
     accent: 'secondary',
   },
+  {
+    id: 'threat-model',
+    title: 'portfolio-threat-model',
+    goal:
+      'Threat modeling and risk analysis for the portfolio: STRIDE, trust boundaries, mitigations mapped to CI and K8s',
+    tech: ['Markdown', 'STRIDE', 'Risk register', 'Diagrams', 'frontend / CI / K8s lanes'],
+    concepts: ['Assets & boundaries', 'Threats with mitigations', 'Aligned with Cloudflare + cluster controls'],
+    icon: ShieldExclamationIcon,
+    repoUrl: 'https://github.com/asadyare/portfolio-threat-model',
+    accent: 'primary',
+  },
 ]
 
 export default function BlueprintProjectsSection() {
@@ -66,11 +78,11 @@ export default function BlueprintProjectsSection() {
             Core <span className="text-gradient-neon">Projects</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Production-grade DevSecOps demonstrations: pipelines, infrastructure, runtime detection, and observability.
+            Repositories behind this portfolio: CI, app and IaC, Kubernetes, scheduled security, and threat modeling.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           {projects.map((project, i) => {
             const Icon = project.icon
             return (
