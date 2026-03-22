@@ -61,7 +61,7 @@ export default function BlueprintHeroSection() {
             </span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight font-display mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight font-display mb-6">
             <span className="text-foreground">Securing the </span>
             <span className="text-gradient-neon">Pipeline</span>
             <br />
@@ -69,35 +69,9 @@ export default function BlueprintHeroSection() {
             <span className="text-gradient-neon">Cloud</span>
           </h1>
 
-          <p className="text-sm md:text-base text-muted-foreground font-medium mb-6 max-w-2xl mx-auto leading-relaxed">
-            DevSecOps Apprentice @{' '}
-            <a
-              href="https://www.linkedin.com/company/cyber-agoge"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              Cyber Agoge
-            </a>
-            · Birmingham, UK · stack matches{' '}
-            <a
-              href="https://www.linkedin.com/in/asad-hassan-20b540313/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              LinkedIn
-            </a>
-            : Docker, Kubernetes, AWS, Terraform, CI/CD.
-          </p>
-
-          <p className="text-lg md:text-xl text-muted-foreground font-body max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground font-body max-w-2xl mx-auto mb-10 leading-relaxed">
             I design and ship security automation you can audit: reusable GitHub Actions, container image gates,
             Kubernetes manifests with runtime detection, and infrastructure as code on Cloudflare.
-          </p>
-          <p className="text-sm text-muted-foreground/90 font-body max-w-2xl mx-auto mb-8 leading-relaxed">
-            Everything below maps to real public repositories—no slide-deck-only claims. Ideal for hiring managers and
-            platform teams who want evidence, not buzzwords.
           </p>
 
           {/* Scannable strip for recruiters (~10s scan) */}

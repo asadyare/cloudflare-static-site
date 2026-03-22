@@ -85,13 +85,8 @@ export default function Navbar() {
             />
             <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-primary-500/20 mix-blend-soft-light" />
           </div>
-          <span className="font-semibold text-lg tracking-tight text-foreground flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
-            <span>
-              Asad Ali <span className="text-primary font-medium">| DevSecOps Engineer</span>
-            </span>
-            <span className="text-xs font-normal text-muted-foreground sm:font-medium">
-              Cyber Agoge · Birmingham, UK
-            </span>
+          <span className="font-semibold text-lg tracking-tight text-foreground">
+            Asad Ali <span className="text-primary font-medium">| DevSecOps Engineer</span>
           </span>
         </a>
 
