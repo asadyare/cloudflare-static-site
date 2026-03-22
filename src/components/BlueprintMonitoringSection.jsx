@@ -9,10 +9,10 @@ const metrics = [
 ]
 
 const dashboards = [
-  'Portfolio Security Dashboard (Grafana)',
-  'Runtime Detection Signals (Falco)',
-  'Security Reports (Daily/Weekly Automation)',
-  'CI/CD and Deployment Evidence',
+  'Grafana dashboard definitions (ConfigMap in repo)',
+  'Falco runtime rules and DaemonSet manifests',
+  'Daily / weekly security automation (separate repo)',
+  'CI scans and SARIF from GitHub Actions',
 ]
 
 export default function BlueprintMonitoringSection() {

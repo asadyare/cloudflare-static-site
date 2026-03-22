@@ -6,19 +6,52 @@ import {
   ServerStackIcon,
   Cog6ToothIcon,
   ShieldCheckIcon,
-  ChartBarIcon,
-  ChartPieIcon,
+  CpuChipIcon,
+  RectangleStackIcon,
 } from '@heroicons/react/24/outline'
 
+// Matches tools actually present in this portfolio’s repos (CI, deploy, IaC, manifests).
 const skills = [
-  { label: 'GitHub Actions', desc: 'CI/CD security pipelines with automated scanning', icon: CodeBracketIcon },
-  { label: 'AWS', desc: 'VPC, IAM, EKS, and image delivery with GHCR', icon: CloudIcon },
-  { label: 'Docker', desc: 'Multi-stage secure builds and image hardening', icon: CubeIcon },
-  { label: 'Kubernetes', desc: 'Helm-ready patterns, network policies, and RBAC hardening', icon: ServerStackIcon },
-  { label: 'Terraform', desc: 'Modular IaC with environment separation and validation', icon: Cog6ToothIcon },
-  { label: 'Security Scanning', desc: 'Trivy + Gitleaks + Semgrep gates for code, deps, and images', icon: ShieldCheckIcon },
-  { label: 'Prometheus', desc: 'Metrics collection and service monitoring for security signals', icon: ChartBarIcon },
-  { label: 'Grafana', desc: 'Dashboards for portfolio health and evidence', icon: ChartPieIcon },
+  {
+    label: 'GitHub Actions',
+    desc: 'Reusable workflows: build, security gates, Pages deploy, image publish',
+    icon: CodeBracketIcon,
+  },
+  {
+    label: 'Node.js & Vite',
+    desc: 'React SPA — npm ci, production build, and checks in CI',
+    icon: CpuChipIcon,
+  },
+  {
+    label: 'Cloudflare',
+    desc: 'Cloudflare Pages for production and PR previews',
+    icon: CloudIcon,
+  },
+  {
+    label: 'Terraform',
+    desc: 'Cloudflare provider — zone, DNS, DNSSEC; validated in CI on dispatch',
+    icon: Cog6ToothIcon,
+  },
+  {
+    label: 'Docker',
+    desc: 'Container image built in CI from the nginx-unprivileged Dockerfile',
+    icon: CubeIcon,
+  },
+  {
+    label: 'GHCR',
+    desc: 'Images pushed to GitHub Container Registry from the pipeline',
+    icon: RectangleStackIcon,
+  },
+  {
+    label: 'Kubernetes',
+    desc: 'Manifests for hardened workloads, ingress, network policy, Falco configs',
+    icon: ServerStackIcon,
+  },
+  {
+    label: 'Security scanning',
+    desc: 'Gitleaks, Semgrep, npm audit, and Trivy image scan with SARIF',
+    icon: ShieldCheckIcon,
+  },
 ]
 
 export default function BlueprintSkillsSection() {
