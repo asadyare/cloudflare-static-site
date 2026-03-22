@@ -6,50 +6,71 @@ import {
   CubeIcon,
   ShieldCheckIcon,
   BeakerIcon,
+  CloudArrowUpIcon,
+  Cog6ToothIcon,
 } from '@heroicons/react/24/outline'
 
+// Matches portfolio-frontend/.github/workflows/CI.yml + portfolio-ci-cd-security shared-security.yml (order of steps in the reusable job).
 const stages = [
   {
-    label: 'Commit / PR Trigger',
-    desc: 'Push and pull requests trigger the frontend security workflow.',
+    label: 'frontend-ci → shared-security',
+    desc: 'Push/PR to main runs frontend-ci; the shared-security job calls portfolio-ci-cd-security reusable workflow with Node 20 and Dockerfile from portfolio-k8s-security.',
     icon: CodeBracketIcon,
     status: 'complete',
   },
   {
-    label: 'Build + Audit',
-    desc: 'Install deps, run build, and run npm audit (high).',
+    label: 'npm audit',
+    desc: 'npm audit --audit-level=high in the shared-security job (after npm ci).',
     icon: BeakerIcon,
     status: 'complete',
   },
   {
-    label: 'Secrets & SAST',
-    desc: 'Gitleaks scans for secrets; Semgrep runs static analysis.',
+    label: 'Gitleaks',
+    desc: 'Secret scanning with SARIF report (gitleaks.sarif).',
     icon: ShieldCheckIcon,
     status: 'complete',
   },
   {
-    label: 'Container Build',
-    desc: 'Docker builds the frontend image using the trusted nginx-unprivileged Dockerfile.',
+    label: 'Semgrep',
+    desc: 'SAST with config p/javascript (returntocorp/semgrep-action).',
+    icon: ShieldCheckIcon,
+    status: 'complete',
+  },
+  {
+    label: 'npm run build',
+    desc: 'Production build runs in shared-security before the container image is built.',
+    icon: BeakerIcon,
+    status: 'complete',
+  },
+  {
+    label: 'Docker build',
+    desc: 'Image built from portfolio-k8s-security docker/Dockerfile; tagged as portfolio-frontend with the commit SHA.',
     icon: CubeIcon,
     status: 'complete',
   },
   {
-    label: 'Trivy Image Scan',
-    desc: 'Trivy scans the built image and fails on HIGH/CRITICAL findings.',
+    label: 'Trivy image scan',
+    desc: 'aquasecurity/trivy-action on the built image; HIGH/CRITICAL with exit-code 1; ignore-unfixed enabled.',
     icon: ShieldCheckIcon,
     status: 'complete',
   },
   {
-    label: 'Terraform Validation',
-    desc: 'Terraform fmt/init/validate is run before applying Cloudflare infrastructure (workflow_dispatch).',
-    icon: CodeBracketIcon,
+    label: 'Cloudflare Pages',
+    desc: 'After shared-security: PRs get pages-preview (dist via cloudflare/pages-action); push to main runs pages-deploy to production.',
+    icon: ArrowRightIcon,
+    status: 'active',
+  },
+  {
+    label: 'GHCR image push',
+    desc: 'On main, push-image job rebuilds from the same Dockerfile, logs in to ghcr.io, pushes asadyare/portfolio-frontend:sha and :latest.',
+    icon: CloudArrowUpIcon,
     status: 'complete',
   },
   {
-    label: 'Deploy',
-    desc: 'Cloudflare Pages deploy runs on push to main; image is also pushed to GHCR.',
-    icon: ArrowRightIcon,
-    status: 'active',
+    label: 'Terraform apply (manual)',
+    desc: 'Only on workflow_dispatch: terraform fmt/init/validate/apply in terraform/ with Cloudflare credentials — not part of every push.',
+    icon: Cog6ToothIcon,
+    status: 'complete',
   },
 ]
 
@@ -68,7 +89,7 @@ export default function BlueprintPipelineSection() {
             CI/CD <span className="text-gradient-neon">Security Pipeline</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-xl mx-auto">
-            Security gates at every stage, with evidence exported to SARIF and scan failures enforcing HIGH/CRITICAL blocking.
+            Same order as shared-security.yml: audit → scans → build → image → Trivy; then Pages and GHCR on success; Terraform only on manual dispatch.
           </p>
         </motion.div>
 
