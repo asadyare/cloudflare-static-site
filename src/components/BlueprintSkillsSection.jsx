@@ -8,6 +8,7 @@ import {
   ShieldCheckIcon,
   CpuChipIcon,
   RectangleStackIcon,
+  GlobeAltIcon,
 } from '@heroicons/react/24/outline'
 
 // Matches tools in this portfolio’s repos (CI, Pages + Functions, deploy, IaC, K8s manifests).
@@ -69,8 +70,8 @@ export default function BlueprintSkillsSection() {
             Core <span className="text-gradient-neon">Technologies</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
-            Tools I use in this portfolio&apos;s repos today—aligned with typical DevSecOps and platform engineering
-            stacks (CI security, containers, K8s, IaC, observability).
+            Tools I use in this portfolio&apos;s repos today—overlaps my public LinkedIn headline (Docker, Kubernetes,
+            AWS, Terraform, CI/CD) plus Cloudflare-specific delivery for this site.
           </p>
         </motion.div>
 

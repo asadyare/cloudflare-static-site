@@ -68,10 +68,19 @@ export default function BlueprintContactSection() {
             Let&apos;s <span className="text-gradient-neon">Connect</span>
           </h2>
           <p className="text-muted-foreground mt-4 mb-10 leading-relaxed max-w-lg mx-auto">
-            Open to <strong className="text-foreground">DevSecOps</strong>,{' '}
-            <strong className="text-foreground">platform / SRE</strong>, and{' '}
-            <strong className="text-foreground">cloud security</strong> roles. If you want someone who ships pipelines
-            and manifests you can read—reach out below.
+            Based in <strong className="text-foreground">Birmingham, UK</strong> · DevSecOps Apprentice at{' '}
+            <strong className="text-foreground">Cyber Agoge</strong>. Open to{' '}
+            <strong className="text-foreground">DevSecOps</strong>, <strong className="text-foreground">platform / SRE</strong>
+            , and <strong className="text-foreground">cloud security</strong> roles (UK / remote). Same story on{' '}
+            <a
+              href="https://www.linkedin.com/in/asad-hassan-20b540313/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-medium hover:underline"
+            >
+              LinkedIn
+            </a>
+            — reach out below.
           </p>
 
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center">

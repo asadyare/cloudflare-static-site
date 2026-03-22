@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import BlueprintHeroSection from '../components/BlueprintHeroSection'
 import BlueprintSkillsSection from '../components/BlueprintSkillsSection'
+import BlueprintCertificationsSection from '../components/BlueprintCertificationsSection'
 import BlueprintProjectsSection from '../components/BlueprintProjectsSection'
 import BlueprintPipelineSection from '../components/BlueprintPipelineSection'
 import BlueprintMonitoringSection from '../components/BlueprintMonitoringSection'
@@ -25,6 +26,7 @@ export default function Home() {
     <div className="w-full">
       <BlueprintHeroSection />
       <BlueprintSkillsSection />
+      <BlueprintCertificationsSection />
       <BlueprintProjectsSection />
       <BlueprintPipelineSection />
       <BlueprintMonitoringSection />

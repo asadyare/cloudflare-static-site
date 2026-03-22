@@ -6,6 +6,7 @@ import profilePhoto from '../assets/profile-photo.png'
 const navLinks = [
   { href: '/#top', id: 'top', label: 'Home' },
   { href: '/#skills', id: 'skills', label: 'Skills' },
+  { href: '/#credentials', id: 'credentials', label: 'Credentials' },
   { href: '/#projects', id: 'projects', label: 'Projects' },
   { href: '/#pipeline', id: 'pipeline', label: 'Pipeline' },
   { href: '/#monitoring', id: 'monitoring', label: 'Monitoring' },
@@ -84,8 +85,13 @@ export default function Navbar() {
             />
             <div className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-primary-500/20 mix-blend-soft-light" />
           </div>
-          <span className="font-semibold text-lg tracking-tight text-foreground">
-            Asad Ali <span className="text-primary font-medium">| DevSecOps Engineer</span>
+          <span className="font-semibold text-lg tracking-tight text-foreground flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+            <span>
+              Asad Ali <span className="text-primary font-medium">| DevSecOps Engineer</span>
+            </span>
+            <span className="text-xs font-normal text-muted-foreground sm:font-medium">
+              Cyber Agoge · Birmingham, UK
+            </span>
           </span>
         </a>
 

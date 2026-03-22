@@ -61,13 +61,35 @@ export default function BlueprintHeroSection() {
             </span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight font-display mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight font-display mb-4">
             <span className="text-foreground">Securing the </span>
             <span className="text-gradient-neon">Pipeline</span>
             <br />
             <span className="text-foreground">from Code to </span>
             <span className="text-gradient-neon">Cloud</span>
           </h1>
+
+          <p className="text-sm md:text-base text-muted-foreground font-medium mb-6 max-w-2xl mx-auto leading-relaxed">
+            DevSecOps Apprentice @{' '}
+            <a
+              href="https://www.linkedin.com/company/cyber-agoge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Cyber Agoge
+            </a>
+            · Birmingham, UK · stack matches{' '}
+            <a
+              href="https://www.linkedin.com/in/asad-hassan-20b540313/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              LinkedIn
+            </a>
+            : Docker, Kubernetes, AWS, Terraform, CI/CD.
+          </p>
 
           <p className="text-lg md:text-xl text-muted-foreground font-body max-w-2xl mx-auto mb-4 leading-relaxed">
             I design and ship security automation you can audit: reusable GitHub Actions, container image gates,
@@ -108,8 +130,9 @@ export default function BlueprintHeroSection() {
                 <span>
                   <span className="font-semibold text-foreground block mb-0.5">Cloud &amp; edge</span>
                   <span className="text-muted-foreground leading-snug">
-                    Cloudflare Pages + Terraform (DNS / zone); edge Functions for a live{' '}
-                    <code className="text-[11px] bg-secondary px-1 py-0.5 rounded">/metrics</code> endpoint.
+                    AWS Cloud Practitioner foundations; this portfolio uses Cloudflare Pages + Terraform and edge
+                    Functions for{' '}
+                    <code className="text-[11px] bg-secondary px-1 py-0.5 rounded">/metrics</code>.
                   </span>
                 </span>
               </li>
