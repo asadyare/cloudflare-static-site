@@ -57,7 +57,7 @@ export const projectCategories = [
     id: 'bank-app-projects',
     label: 'Bank application',
     description:
-      'Baawisan Bank: secure SPA on AWS, multi-scanner CI/CD, and standalone STRIDE threat model / risk analysis repos.',
+      'Secure banking demo: Vite + Supabase SPA on AWS with Terraform, hardened CI/CD, and in-repo threat model / risk analysis.',
     order: 2,
   },
   {
@@ -357,7 +357,7 @@ export const caseStudies = [
   {
     slug: 'secure-banking-app',
     category: 'bank-app-projects',
-    title: 'Baawisan Bank — secure banking web app',
+    title: 'Secure banking web app (demo)',
     shortTitle: 'secure-banking-app',
     repoUrl: 'https://github.com/asadyare/secure-banking-app',
     createdAt: '2026-03-12T16:11:52Z',
@@ -382,13 +382,14 @@ export const caseStudies = [
     concepts: [
       'Branch ruleset: all scanners green before merge',
       'OIDC to AWS — no long-lived keys in CI',
-      'In-repo case study: 19 blocking incidents with PR/run evidence',
+      'In-repo case study + STRIDE threat model / risk analysis (`docs/`)',
     ],
     caseStudy: {
       summary:
-        'A portfolio-grade “Baawisan Bank” web app: modern frontend stack, Supabase for auth and data, and AWS static hosting (private S3 origin, CloudFront, WAFv2) provisioned as code. CI/CD runs Semgrep, CodeQL (default setup), Trivy (fs + IaC + image posture), Checkov on Terraform, ZAP baseline on the built SPA, TruffleHog, Gitleaks (also in git hooks), Dependabot, Dependency Review, npm audit, and CycloneDX SBOM — with a written case study folder documenting 19 blocking incidents from first green pipeline to first live deploy.',
+        'A portfolio-grade secure banking demo: Vite + React + TypeScript, Supabase for auth and data, and AWS static hosting (private S3 origin, CloudFront, WAFv2) provisioned as code. CI/CD runs Semgrep, CodeQL (default setup), Trivy (fs + IaC + image posture), Checkov on Terraform, ZAP baseline on the built SPA, TruffleHog, Gitleaks (also in git hooks), Dependabot, Dependency Review, npm audit, and CycloneDX SBOM — plus `docs/threat-model-risk-analysis.md` for STRIDE, trust boundaries, and qualitative risk, and `docs/case-study/` documenting 19 blocking incidents from first green pipeline to first live deploy.',
       context: [
         'The repository doubles as a teaching artefact: `docs/case-study/` walks through architecture (runtime, CI/CD, OIDC trust), per-scanner controls, and a chronological incident log with deep-dives and suppression rationale.',
+        'Threat modeling and inherent-risk analysis for the same app live in `docs/threat-model-risk-analysis.md` (aligned with Supabase RLS, JWT, and the static SPA threat surface).',
         'Local developer hygiene matches CI: Husky pre-commit runs lint-staged and `gitleaks protect --staged`; pre-push runs full lint and `gitleaks detect` on the repo.',
       ],
       securityRequirements: [
@@ -422,6 +423,13 @@ export const caseStudies = [
             'Supabase env configuration for local and hosted environments (`VITE_SUPABASE_*`).',
           ],
         },
+        {
+          title: 'Threat model & risk (same repo)',
+          items: [
+            '`docs/threat-model-risk-analysis.md` — STRIDE-oriented threat model, trust boundaries, inherent risk, and analysis for the Supabase-backed SPA.',
+            'Complements pentest and pre-deployment assessment docs under `docs/`.',
+          ],
+        },
       ],
       controls: [
         'Documented scanner matrix and “why this tool” rationale in `docs/case-study/03-security-controls.md`.',
@@ -430,69 +438,10 @@ export const caseStudies = [
       ],
       evidence: [
         'Public repo: https://github.com/asadyare/secure-banking-app',
+        'Threat model & risk analysis: https://github.com/asadyare/secure-banking-app/blob/main/docs/threat-model-risk-analysis.md',
         'Case study index: https://github.com/asadyare/secure-banking-app/tree/main/docs/case-study',
         'Incident log and per-incident files under `docs/case-study/` (19 items with PR and workflow proof).',
         'CI badge and workflow run history on GitHub Actions.',
-      ],
-      diagramUrl: null,
-      diagramCaption: null,
-    },
-  },
-  {
-    slug: 'baawisan-banking-threat-model',
-    category: 'bank-app-projects',
-    title: 'Baawisan Banking — threat model & risk analysis',
-    shortTitle: 'baawisan-banking-threat-model',
-    repoUrl: 'https://github.com/asadyare/baawisan-banking-threat-model',
-    createdAt: '2026-04-20T18:24:09Z',
-    tags: ['STRIDE', 'Risk', 'Threat modeling', 'Appwrite', 'Next.js', 'FinTech'],
-    featured: false,
-    icon: ShieldExclamationIcon,
-    accent: 'secondary',
-    goal:
-      'Standalone STRIDE threat model, risk register, and mitigations for Baawisan Banking — aligned with the full-stack app (Next.js, Appwrite, Plaid, Dwolla), with explicit mapping to the secure-banking-app (Supabase/AWS) portfolio codebase.',
-    tech: ['Markdown', 'STRIDE', 'Risk analysis', 'MITIGATIONS mapping'],
-    concepts: [
-      'Assets, trust boundaries, data flows',
-      'Part A/B risks including threat-model freshness',
-      'Cross-links: baawisan-banking vs secure-banking-app scope',
-    ],
-    caseStudy: {
-      summary:
-        'A dedicated documentation repository for Baawisan Banking: structured threat modeling (STRIDE), prioritized risks (likelihood × impact), and concrete mitigations mapped to risks. The primary implementation target is the Next.js + Appwrite + Plaid + Dwolla application; the README clarifies how the same risk themes apply when reviewing the separate Supabase + AWS static hosting portfolio app (secure-banking-app).',
-      context: [
-        'Financial and PII-heavy workloads need explicit trust boundaries and IDOR/session risks called out before pen-tests. This repo is the single place for security design narrative, separate from application code so it can be reviewed independently.',
-        'Process risks (B1–B3) cover stale models and ownership — matching how enterprise teams govern threat models.',
-      ],
-      securityRequirements: [
-        'STRIDE coverage for spoofing through elevation of privilege on money-moving flows.',
-        'Critical risks (e.g. authorization, secrets in client) highlighted in Part A with traceability to MITIGATIONS.md.',
-        'Clear scope: assumptions about HTTPS, server-only secrets, and third-party trust.',
-      ],
-      pipeline: [
-        {
-          title: 'Documentation lifecycle',
-          items: [
-            'Threat model updated when features or integrations change (see README “Updates”).',
-            'PRs to this repo can reference risk IDs (e.g. A2.1) for traceability.',
-          ],
-        },
-        {
-          title: 'Relationship to shipping code',
-          items: [
-            'baawisan-banking: primary stack described in THREAT_MODEL.md (server actions, Appwrite, Dwolla, Plaid).',
-            'secure-banking-app: adapt control intent (authz, secrets, transport) to Supabase and static hosting — documented in README related-codebases table.',
-          ],
-        },
-      ],
-      controls: [
-        'Three-file split: THREAT_MODEL → RISK_ANALYSIS → MITIGATIONS for traceability.',
-        'Tables fixed for valid Markdown rendering on GitHub.',
-      ],
-      evidence: [
-        'Repository: https://github.com/asadyare/baawisan-banking-threat-model (push local clone if not yet on GitHub).',
-        'THREAT_MODEL.md, RISK_ANALYSIS.md, MITIGATIONS.md in repo root.',
-        'Related app: https://github.com/asadyare/baawisan-banking — portfolio deploy showcase: https://github.com/asadyare/secure-banking-app',
       ],
       diagramUrl: null,
       diagramCaption: null,
