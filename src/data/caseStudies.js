@@ -57,7 +57,7 @@ export const projectCategories = [
     id: 'bank-app-projects',
     label: 'Bank application',
     description:
-      'Baawisan Bank: React + Supabase SPA on AWS (S3, CloudFront, WAFv2) with Terraform, OIDC deploys, and multi-scanner CI/CD — full case study in-repo.',
+      'Baawisan Bank: secure SPA on AWS, multi-scanner CI/CD, and standalone STRIDE threat model / risk analysis repos.',
     order: 2,
   },
   {
@@ -433,6 +433,66 @@ export const caseStudies = [
         'Case study index: https://github.com/asadyare/secure-banking-app/tree/main/docs/case-study',
         'Incident log and per-incident files under `docs/case-study/` (19 items with PR and workflow proof).',
         'CI badge and workflow run history on GitHub Actions.',
+      ],
+      diagramUrl: null,
+      diagramCaption: null,
+    },
+  },
+  {
+    slug: 'baawisan-banking-threat-model',
+    category: 'bank-app-projects',
+    title: 'Baawisan Banking — threat model & risk analysis',
+    shortTitle: 'baawisan-banking-threat-model',
+    repoUrl: 'https://github.com/asadyare/baawisan-banking-threat-model',
+    createdAt: '2026-04-20T18:24:09Z',
+    tags: ['STRIDE', 'Risk', 'Threat modeling', 'Appwrite', 'Next.js', 'FinTech'],
+    featured: false,
+    icon: ShieldExclamationIcon,
+    accent: 'secondary',
+    goal:
+      'Standalone STRIDE threat model, risk register, and mitigations for Baawisan Banking — aligned with the full-stack app (Next.js, Appwrite, Plaid, Dwolla), with explicit mapping to the secure-banking-app (Supabase/AWS) portfolio codebase.',
+    tech: ['Markdown', 'STRIDE', 'Risk analysis', 'MITIGATIONS mapping'],
+    concepts: [
+      'Assets, trust boundaries, data flows',
+      'Part A/B risks including threat-model freshness',
+      'Cross-links: baawisan-banking vs secure-banking-app scope',
+    ],
+    caseStudy: {
+      summary:
+        'A dedicated documentation repository for Baawisan Banking: structured threat modeling (STRIDE), prioritized risks (likelihood × impact), and concrete mitigations mapped to risks. The primary implementation target is the Next.js + Appwrite + Plaid + Dwolla application; the README clarifies how the same risk themes apply when reviewing the separate Supabase + AWS static hosting portfolio app (secure-banking-app).',
+      context: [
+        'Financial and PII-heavy workloads need explicit trust boundaries and IDOR/session risks called out before pen-tests. This repo is the single place for security design narrative, separate from application code so it can be reviewed independently.',
+        'Process risks (B1–B3) cover stale models and ownership — matching how enterprise teams govern threat models.',
+      ],
+      securityRequirements: [
+        'STRIDE coverage for spoofing through elevation of privilege on money-moving flows.',
+        'Critical risks (e.g. authorization, secrets in client) highlighted in Part A with traceability to MITIGATIONS.md.',
+        'Clear scope: assumptions about HTTPS, server-only secrets, and third-party trust.',
+      ],
+      pipeline: [
+        {
+          title: 'Documentation lifecycle',
+          items: [
+            'Threat model updated when features or integrations change (see README “Updates”).',
+            'PRs to this repo can reference risk IDs (e.g. A2.1) for traceability.',
+          ],
+        },
+        {
+          title: 'Relationship to shipping code',
+          items: [
+            'baawisan-banking: primary stack described in THREAT_MODEL.md (server actions, Appwrite, Dwolla, Plaid).',
+            'secure-banking-app: adapt control intent (authz, secrets, transport) to Supabase and static hosting — documented in README related-codebases table.',
+          ],
+        },
+      ],
+      controls: [
+        'Three-file split: THREAT_MODEL → RISK_ANALYSIS → MITIGATIONS for traceability.',
+        'Tables fixed for valid Markdown rendering on GitHub.',
+      ],
+      evidence: [
+        'Repository: https://github.com/asadyare/baawisan-banking-threat-model (push local clone if not yet on GitHub).',
+        'THREAT_MODEL.md, RISK_ANALYSIS.md, MITIGATIONS.md in repo root.',
+        'Related app: https://github.com/asadyare/baawisan-banking — portfolio deploy showcase: https://github.com/asadyare/secure-banking-app',
       ],
       diagramUrl: null,
       diagramCaption: null,
