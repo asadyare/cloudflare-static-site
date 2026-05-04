@@ -477,7 +477,7 @@ export const caseStudies = [
     concepts: [
       'PHI-oriented trust boundaries and cross-service `INTEGRATION_API_KEY` surface',
       'IaC + image + secret + SAST gates before deploy confirmation',
-      'In-repo `docs/case-study/` mirroring the secure-banking evidence pattern',
+      'In-repo `docs/case-study/` for narrative evidence: architecture, controls, pipeline, and incident log with proof pointers',
     ],
     caseStudy: {
       summary:
