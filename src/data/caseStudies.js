@@ -9,6 +9,7 @@ import {
   ServerStackIcon,
   CalendarDaysIcon,
   BuildingOffice2Icon,
+  HeartIcon,
 } from '@heroicons/react/24/outline'
 
 /** @typedef {{ title: string, items: string[] }} PipelineStage */
@@ -64,7 +65,7 @@ export const projectCategories = [
     id: 'healthcare-app-projects',
     label: 'Healthcare application',
     description:
-      'Pipelines and security patterns for healthcare apps (e.g. HIPAA-aware controls). Placeholder until repos exist.',
+      'CareConnect360, MedTrack Pro, and HealthHub Mobile: npm-workspace monorepo, Terraform (VPC/EKS/KMS), hardened Kubernetes, and security-first GitHub Actions with in-repo threat model and case study.',
     order: 3,
   },
 ]
@@ -442,6 +443,94 @@ export const caseStudies = [
         'Case study index: https://github.com/asadyare/secure-banking-app/tree/main/docs/case-study',
         'Incident log and per-incident files under `docs/case-study/` (19 items with PR and workflow proof).',
         'CI badge and workflow run history on GitHub Actions.',
+      ],
+      diagramUrl: null,
+      diagramCaption: null,
+    },
+  },
+  {
+    slug: 'healthcare-apps',
+    category: 'healthcare-app-projects',
+    title: 'Healthcare Apps (CareConnect360, MedTrack Pro, HealthHub)',
+    shortTitle: 'Healthcare_Apps',
+    repoUrl: 'https://github.com/asadyare/Healthcare_Apps',
+    createdAt: '2026-04-26T10:27:12Z',
+    badgeUrl:
+      'https://github.com/asadyare/Healthcare_Apps/actions/workflows/secure-ci-cd.yml/badge.svg',
+    tags: ['HIPAA', 'EKS', 'Terraform', 'Kubernetes', 'GitHub Actions', 'Trivy', 'Checkov', 'Semgrep'],
+    featured: false,
+    icon: HeartIcon,
+    accent: 'primary',
+    goal:
+      'Three integrated Express + Vite healthcare apps (npm workspaces); AWS baseline via Terraform (VPC, private EKS API, KMS, flow logs); `k8s/base` hardening; `secure-ci-cd.yml` gates plus STRIDE threat model, risk analysis, infra doc, and incident log with proof pointers.',
+    tech: [
+      'Node.js',
+      'Express',
+      'React (Vite)',
+      'SQLite (dev)',
+      'Terraform (AWS)',
+      'EKS',
+      'Kubernetes',
+      'GitHub Actions',
+      'OIDC',
+    ],
+    concepts: [
+      'PHI-oriented trust boundaries and cross-service `INTEGRATION_API_KEY` surface',
+      'IaC + image + secret + SAST gates before deploy confirmation',
+      'In-repo `docs/case-study/` mirroring the secure-banking evidence pattern',
+    ],
+    caseStudy: {
+      summary:
+        'Monorepo for provider-facing CareConnect360, medication-focused MedTrack Pro, and patient-facing HealthHub Mobile: shared integration APIs, local SQLite for development, and production-oriented Terraform for VPC, KMS, private EKS API endpoint, and flow logs. Kubernetes manifests apply pod security-minded defaults; CI/CD runs Gitleaks, TruffleHog, Semgrep (including custom rules), npm audit scoped for CI, Checkov on Terraform, Trivy filesystem and multi-service Docker builds, Terraform validate, and server-side dry-run apply — with documentation tying STRIDE, HIPAA-oriented qualitative risk, infrastructure controls, and a chronological incident log to concrete files and workflow steps.',
+      context: [
+        '`docs/threat-model.md` holds the STRIDE matrix and SDLC security requirements; `docs/threat-model-risk-analysis.md` deepens trust boundaries and top risks for PHI-handling workflows.',
+        '`docs/infrastructure-and-security.md` maps Terraform modules, Kubernetes controls, and how scans map to release evidence.',
+        '`docs/case-study/` documents architecture (runtime + CI/CD + OIDC), per-gate controls, pipeline jobs, and `05-incident-log.md` for blocking issues and resolutions with file/workflow proof (add Actions permalinks after green runs on `main`).',
+      ],
+      securityRequirements: [
+        'No promotion without passing secret scan, SAST, SCA, IaC policy, and container posture checks defined in `.github/workflows/secure-ci-cd.yml` and `.security/security-gates.md`.',
+        'Terraform and cluster configs reviewed with Checkov/Trivy; skips documented in `.security/checkov.yaml` with rationale.',
+        'Integration and JWT secrets never committed; `.env.example` only documents variable names.',
+        'Network and control-plane assumptions (private EKS API, flow logs) documented for production access paths.',
+      ],
+      pipeline: [
+        {
+          title: 'Security gates (secure-ci-cd.yml)',
+          items: [
+            'Gitleaks and TruffleHog with event-specific base/head inputs for PR vs push.',
+            'Semgrep with default plus `.security/semgrep-rules.yaml`.',
+            'npm audit with production-focused flags suitable for monorepo noise.',
+            'Checkov against Terraform; Trivy fs and image builds for all three app images.',
+            'Terraform init without backend on PR validate path; `kubectl apply --dry-run=server` on `k8s/base/microservices.yaml`.',
+          ],
+        },
+        {
+          title: 'Build & registry',
+          items: [
+            'Matrix Docker builds for `care-connect-360`, `medtrack-pro`, `healthhub-mobile` with context paths aligned to `apps/`.',
+            'ECR push guarded with idempotent tag checks when workflows are re-run.',
+          ],
+        },
+        {
+          title: 'Threat model & evidence (same repo)',
+          items: [
+            '`docs/threat-model-risk-analysis.md` — qualitative HIPAA-oriented layer and risk narrative.',
+            '`docs/case-study/05-incident-log.md` — issues, root causes, fixes, and proof table.',
+          ],
+        },
+      ],
+      controls: [
+        '`.security/security-gates.md` and case-study chapters map each tool to SDLC phase.',
+        'Dependabot configured for npm and GitHub Actions (weekly) with production npm grouping.',
+        'Kubernetes and Terraform README-style guidance cross-linked from root `README.md`.',
+      ],
+      evidence: [
+        'Public repo: https://github.com/asadyare/Healthcare_Apps',
+        'Threat model: https://github.com/asadyare/Healthcare_Apps/blob/main/docs/threat-model.md',
+        'Risk analysis: https://github.com/asadyare/Healthcare_Apps/blob/main/docs/threat-model-risk-analysis.md',
+        'Infrastructure & security: https://github.com/asadyare/Healthcare_Apps/blob/main/docs/infrastructure-and-security.md',
+        'Case study index: https://github.com/asadyare/Healthcare_Apps/tree/main/docs/case-study',
+        'Workflow badge and Actions history for `secure-ci-cd.yml`.',
       ],
       diagramUrl: null,
       diagramCaption: null,
