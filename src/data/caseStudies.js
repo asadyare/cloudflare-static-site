@@ -364,7 +364,7 @@ export const caseStudies = [
     createdAt: '2026-03-12T16:11:52Z',
     badgeUrl: 'https://github.com/asadyare/secure-banking-app/actions/workflows/ci.yml/badge.svg',
     tags: ['AWS', 'Terraform', 'Supabase', 'Semgrep', 'Trivy', 'Checkov', 'ZAP', 'OIDC'],
-    featured: false,
+    featured: true,
     icon: BuildingOffice2Icon,
     accent: 'primary',
     goal:
@@ -458,7 +458,7 @@ export const caseStudies = [
     badgeUrl:
       'https://github.com/asadyare/Healthcare_Apps/actions/workflows/secure-ci-cd.yml/badge.svg',
     tags: ['HIPAA', 'EKS', 'Terraform', 'Kubernetes', 'GitHub Actions', 'Trivy', 'Checkov', 'Semgrep'],
-    featured: false,
+    featured: true,
     icon: HeartIcon,
     accent: 'primary',
     goal:
@@ -567,7 +567,16 @@ export function getAllCaseStudySlugs() {
   return caseStudies.map((c) => c.slug)
 }
 
-/** Case studies shown in the homepage “Core Projects” grid (portfolio vertical only) */
+/** Case studies shown in the homepage “Core Projects” grid — all `featured` items, ordered by category then slug */
 export function getHomePageCaseStudies() {
-  return caseStudies.filter((c) => c.category === 'portfolio-projects')
+  const categoryOrder = new Map(projectCategories.map((pc) => [pc.id, pc.order]))
+  return caseStudies
+    .filter((c) => c.featured)
+    .slice()
+    .sort((a, b) => {
+      const oa = categoryOrder.get(a.category) ?? 99
+      const ob = categoryOrder.get(b.category) ?? 99
+      if (oa !== ob) return oa - ob
+      return a.slug.localeCompare(b.slug)
+    })
 }
