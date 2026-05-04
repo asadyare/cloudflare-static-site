@@ -9,49 +9,73 @@ import {
   CpuChipIcon,
   RectangleStackIcon,
   GlobeAltIcon,
+  ChartBarIcon,
+  CircleStackIcon,
+  DocumentTextIcon,
 } from '@heroicons/react/24/outline'
 
-// Matches tools in this portfolio’s repos (CI, Pages + Functions, deploy, IaC, K8s manifests).
+// Aggregated from portfolio case studies: portfolio-ci-cd-security, frontend, k8s-security,
+// daily-security, threat-model, secure-banking-app, Healthcare_Apps (see src/data/caseStudies.js).
 const skills = [
   {
-    label: 'GitHub Actions',
-    desc: 'Reusable workflows: build, security gates, Pages deploy, image publish',
+    label: 'GitHub Actions & OIDC',
+    desc: 'Reusable workflows (`workflow_call`), PR + main gates, scheduled cron scans, federated AWS deploy without long-lived keys',
     icon: CodeBracketIcon,
   },
   {
-    label: 'Node.js & Vite',
-    desc: 'React SPA — npm ci, production build, and checks in CI',
+    label: 'Node.js, React & Vite',
+    desc: 'Portfolio SPA; banking TypeScript SPA; healthcare npm workspaces (Express + Vite apps) with CI build matrices',
     icon: CpuChipIcon,
   },
   {
     label: 'Cloudflare',
-    desc: 'Pages (prod + PR previews), Terraform for DNS/zone, edge Functions e.g. GET /metrics',
+    desc: 'Pages (prod + PR previews), Wrangler deploy, Terraform for zone/DNS/DNSSEC, Pages Functions e.g. GET /metrics',
     icon: CloudIcon,
   },
   {
-    label: 'Terraform',
-    desc: 'Cloudflare provider — zone, DNS, DNSSEC; validated in CI on dispatch',
+    label: 'AWS (patterns in repos)',
+    desc: 'Banking: private S3, CloudFront, WAFv2. Healthcare Terraform: VPC, private EKS API, KMS, flow logs, ECR image flows',
+    icon: GlobeAltIcon,
+  },
+  {
+    label: 'Terraform & IaC policy',
+    desc: 'Cloudflare + AWS providers; `terraform validate`/plan in CI; Checkov and Trivy IaC with documented suppressions where justified',
     icon: Cog6ToothIcon,
   },
   {
-    label: 'Docker',
-    desc: 'Container image built in CI from the nginx-unprivileged Dockerfile',
+    label: 'Docker & registries',
+    desc: 'Hardened Dockerfiles, image build in Actions; GHCR pushes; healthcare matrix builds and ECR idempotent tag pattern',
     icon: CubeIcon,
   },
   {
-    label: 'GHCR',
-    desc: 'Images pushed to GitHub Container Registry from the pipeline',
-    icon: RectangleStackIcon,
-  },
-  {
     label: 'Kubernetes',
-    desc: 'Manifests for hardened workloads, ingress, network policy, Falco configs',
+    desc: 'Hardened Deployments, Ingress/TLS, NetworkPolicy, pod security contexts; EKS-aligned baseline in Healthcare_Apps; cert-manager patterns in k8s-security',
     icon: ServerStackIcon,
   },
   {
-    label: 'Security scanning',
-    desc: 'Gitleaks, Semgrep, npm audit, and Trivy image scan with SARIF',
+    label: 'Observability',
+    desc: 'Prometheus scrape patterns, Grafana dashboards as code (ConfigMap), Falco runtime rules — plus edge `/metrics` for demos',
+    icon: ChartBarIcon,
+  },
+  {
+    label: 'DevSecOps scanning',
+    desc: 'Gitleaks, TruffleHog, Semgrep (+ SARIF), npm audit, Trivy fs/image/IaC, ZAP baseline, CodeQL, Dependency Review — severity gates per repo',
     icon: ShieldCheckIcon,
+  },
+  {
+    label: 'Supply chain & SBOM',
+    desc: 'Dependabot (npm, Actions, Docker, Terraform where configured), CycloneDX SBOM uploads, scheduled rescan + Issues trail (daily-security)',
+    icon: RectangleStackIcon,
+  },
+  {
+    label: 'Data & auth (demos)',
+    desc: 'Supabase (Postgres, RLS, JWT) for secure-banking; SQLite dev + integration APIs across Healthcare_Apps services',
+    icon: CircleStackIcon,
+  },
+  {
+    label: 'Threat modeling & evidence',
+    desc: 'STRIDE matrices, risk analysis markdown, Mermaid architecture, in-repo case studies and incident logs tied to workflow proof',
+    icon: DocumentTextIcon,
   },
 ]
 
@@ -70,8 +94,9 @@ export default function BlueprintSkillsSection() {
             Core <span className="text-gradient-neon">Technologies</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
-            Tools I use in this portfolio&apos;s repos today—overlaps my public LinkedIn headline (Docker, Kubernetes,
-            AWS, Terraform, CI/CD) plus Cloudflare-specific delivery for this site.
+            Consolidated from every public project linked here: portfolio DevSecOps repos, secure-banking on AWS, and
+            Healthcare_Apps (EKS/Terraform monorepo)—same toolchain I highlight for platform, application, and security
+            engineering roles.
           </p>
         </motion.div>
 

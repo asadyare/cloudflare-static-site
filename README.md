@@ -20,12 +20,15 @@ CI runs **`npm audit`** via the shared security workflow. If it fails on critica
 
 ## Tech Stack
 
-- Node.js 20 with npm  
-- React with Vite and Tailwind CSS  
-- Cloudflare Pages for hosting and preview deployments  
-- Docker for local builds and security scanning
-- Kubernetes manifests and cluster security  
-- GitHub Actions for CI and deployment  
+Aligned with **`BlueprintSkillsSection`** (home “Core Technologies”) and tools across linked repos (portfolio CI, banking, healthcare):
+
+- **CI/CD:** GitHub Actions (reusable workflows, cron), OIDC to AWS where configured  
+- **App:** Node.js, React, Vite, TypeScript (banking), Tailwind; Express + workspaces (healthcare demo)  
+- **Edge / DNS:** Cloudflare Pages, Wrangler, Pages Functions; Terraform (Cloudflare provider)  
+- **Cloud / IaC:** AWS (S3/CloudFront/WAF; EKS/VPC/KMS/ECR patterns in Healthcare_Apps), Terraform, Checkov / Trivy IaC  
+- **Containers & K8s:** Docker, GHCR/ECR; Kubernetes (Ingress, NetworkPolicy, Falco, Grafana/Prometheus patterns)  
+- **DevSecOps:** Gitleaks, TruffleHog, Semgrep, npm audit, Trivy, ZAP, CodeQL, Dependency Review, Dependabot, SBOM (CycloneDX)  
+- **Design evidence:** STRIDE threat models, markdown case studies, Husky + secret hooks (banking)  
 
 ### Project case studies (by domain)
 
