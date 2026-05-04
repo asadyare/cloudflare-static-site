@@ -7,6 +7,7 @@ import {
   ArrowPathIcon,
   CloudIcon,
   ServerStackIcon,
+  AcademicCapIcon,
 } from '@heroicons/react/24/outline'
 
 export default function BlueprintHeroSection() {
@@ -70,8 +71,10 @@ export default function BlueprintHeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground font-body max-w-2xl mx-auto mb-10 leading-relaxed">
-            I design and ship security automation you can audit: reusable GitHub Actions, container image gates,
-            Kubernetes manifests with runtime detection, and infrastructure as code on Cloudflare.
+            I design and ship security automation you can audit: reusable GitHub Actions with OIDC where deploys touch
+            AWS, layered scanners (secrets, SAST, SCA, IaC, containers), hardened Kubernetes and observability hooks, plus
+            Terraform on Cloudflare and AWS—backed by public repos with STRIDE-style threat write-ups and case-study
+            evidence.
           </p>
 
           {/* Scannable strip for recruiters (~10s scan) */}
@@ -79,34 +82,37 @@ export default function BlueprintHeroSection() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 0.5 }}
-            className="mb-10 max-w-3xl mx-auto rounded-2xl border border-border bg-card/60 backdrop-blur-sm px-4 py-4 md:px-6 md:py-5"
+            className="mb-10 max-w-5xl mx-auto rounded-2xl border border-border bg-card/60 backdrop-blur-sm px-4 py-4 md:px-6 md:py-5"
             aria-label="At a glance"
           >
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary mb-3 text-center">
               At a glance
             </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left text-sm">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 text-left text-sm">
               <li className="flex gap-3 items-start">
                 <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <ArrowPathIcon className="h-4 w-4" aria-hidden />
                 </span>
                 <span>
-                  <span className="font-semibold text-foreground block mb-0.5">CI &amp; supply chain</span>
+                  <span className="font-semibold text-foreground block mb-0.5">CI/CD &amp; supply chain</span>
                   <span className="text-muted-foreground leading-snug">
-                    Shared GitHub Actions — audit, Gitleaks, Semgrep, Trivy on the image, SARIF to the Security tab.
+                    Reusable GitHub Actions, OIDC to AWS for deploy jobs, Gitleaks / TruffleHog / Semgrep, npm audit,
+                    Trivy (fs + image + IaC), SARIF uploads, Dependabot and CycloneDX SBOM patterns—including scheduled
+                    rescans.
                   </span>
                 </span>
               </li>
-              <li className="flex gap-3 items-start sm:border-x sm:border-border/80 sm:px-4">
+              <li className="flex gap-3 items-start">
                 <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <CloudIcon className="h-4 w-4" aria-hidden />
                 </span>
                 <span>
-                  <span className="font-semibold text-foreground block mb-0.5">Cloud &amp; edge</span>
+                  <span className="font-semibold text-foreground block mb-0.5">Multi-cloud &amp; Terraform</span>
                   <span className="text-muted-foreground leading-snug">
-                    AWS Cloud Practitioner foundations; this portfolio uses Cloudflare Pages + Terraform and edge
-                    Functions for{' '}
-                    <code className="text-[11px] bg-secondary px-1 py-0.5 rounded">/metrics</code>.
+                    Cloudflare Pages, Wrangler, edge Functions (
+                    <code className="text-[11px] bg-secondary px-1 py-0.5 rounded">/metrics</code>
+                    ), zone/DNS as code; AWS patterns in public demos (S3/CloudFront/WAF; VPC/EKS/KMS/ECR). Terraform
+                    validated and policy-checked in CI (maps to Terraform Associate practice).
                   </span>
                 </span>
               </li>
@@ -115,9 +121,22 @@ export default function BlueprintHeroSection() {
                   <ServerStackIcon className="h-4 w-4" aria-hidden />
                 </span>
                 <span>
-                  <span className="font-semibold text-foreground block mb-0.5">Kubernetes</span>
+                  <span className="font-semibold text-foreground block mb-0.5">Kubernetes &amp; observability</span>
                   <span className="text-muted-foreground leading-snug">
-                    Hardened workloads, ingress &amp; TLS, NetworkPolicy, Falco runtime configs — all in-repo.
+                    Non-root workloads, ingress/TLS, NetworkPolicy; Falco runtime signals; Grafana/Prometheus-style
+                    dashboards as YAML; EKS-oriented baselines in the healthcare monorepo.
+                  </span>
+                </span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <AcademicCapIcon className="h-4 w-4" aria-hidden />
+                </span>
+                <span>
+                  <span className="font-semibold text-foreground block mb-0.5">Assurance &amp; design</span>
+                  <span className="text-muted-foreground leading-snug">
+                    STRIDE-aligned threat models, risk notes, and in-repo case studies with incident proof; Security+,
+                    CC, Terraform Associate, GitHub Actions cert, and DevSecOps training—see Credentials below.
                   </span>
                 </span>
               </li>
@@ -166,7 +185,11 @@ export default function BlueprintHeroSection() {
             </span>
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 border border-border">
               <ShieldCheckIcon className="w-4 h-4 text-primary" />
-              <span className="text-foreground">Runtime detection</span>
+              <span className="text-foreground">Policy-as-code &amp; SARIF</span>
+            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 border border-border">
+              <AcademicCapIcon className="w-4 h-4 text-primary" />
+              <span className="text-foreground">STRIDE + case-study evidence</span>
             </span>
           </div>
         </motion.div>
