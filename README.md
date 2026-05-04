@@ -20,21 +20,21 @@ CI runs **`npm audit`** via the shared security workflow. If it fails on critica
 
 ## Tech Stack
 
-Aligned with **`BlueprintSkillsSection`** (home “Core Technologies”) and tools across linked repos (portfolio CI, banking, healthcare):
+Aligned with **`BlueprintSkillsSection`** (home “Core Technologies”) and tools across linked repos (portfolio CI, bank-app demo, healthcare):
 
 - **CI/CD:** GitHub Actions (reusable workflows, cron), OIDC to AWS where configured  
-- **App:** Node.js, React, Vite, TypeScript (banking), Tailwind; Express + workspaces (healthcare demo)  
+- **App:** Node.js, React, Vite, TypeScript (bank-app demo), Tailwind; Express + workspaces (healthcare demo)  
 - **Edge / DNS:** Cloudflare Pages, Wrangler, Pages Functions; Terraform (Cloudflare provider)  
 - **Cloud / IaC:** AWS (S3/CloudFront/WAF; EKS/VPC/KMS/ECR patterns in Healthcare_Apps), Terraform, Checkov / Trivy IaC  
 - **Containers & K8s:** Docker, GHCR/ECR; Kubernetes (Ingress, NetworkPolicy, Falco, Grafana/Prometheus patterns)  
 - **DevSecOps:** Gitleaks, TruffleHog, Semgrep, npm audit, Trivy, ZAP, CodeQL, Dependency Review, Dependabot, SBOM (CycloneDX)  
-- **Design evidence:** STRIDE threat models, markdown case studies, Husky + secret hooks (banking)  
+- **Design evidence:** STRIDE threat models, markdown case studies, Husky + secret hooks (bank-app repo)  
 
 ### Project case studies (by domain)
 
 - **`/projects`** — hub: pick a vertical (portfolio, bank, healthcare, …).
 - **`/projects/portfolio-projects`** — case studies for this portfolio’s repos (CI/CD, frontend, K8s, etc.).
-- **`/projects/bank-app-projects`** — **secure-banking-app** (AWS deploy + in-repo threat model / case study docs). **`/projects/healthcare-app-projects`** — **healthcare-apps** (`Healthcare_Apps`: EKS/Terraform, hardened CI/CD, threat model + case study).
+- **`/projects/bank-app-projects`** — **Bank app demo** (AWS, Terraform, in-repo threat model / case study; route slug `secure-banking-app`). **`/projects/healthcare-app-projects`** — **healthcare-apps** (`Healthcare_Apps`: EKS/Terraform, hardened CI/CD, threat model + case study).
 - **`/projects/:categoryId/:slug`** — full case study (e.g. `/projects/portfolio-projects/portfolio-ci-cd-security`). Data in **`src/data/caseStudies.js`** (`category` + `slug`); categories in **`projectCategories`**.
 - Old one-segment URLs like **`/projects/portfolio-ci-cd-security`** redirect to the new path.
 

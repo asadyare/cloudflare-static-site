@@ -15,7 +15,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 // Aggregated from portfolio case studies: portfolio-ci-cd-security, frontend, k8s-security,
-// daily-security, threat-model, secure-banking-app, Healthcare_Apps (see src/data/caseStudies.js).
+// daily-security, threat-model, bank-app case study (slug secure-banking-app), Healthcare_Apps — see caseStudies.js.
 const skills = [
   {
     label: 'GitHub Actions & OIDC',
@@ -24,7 +24,7 @@ const skills = [
   },
   {
     label: 'Node.js, React & Vite',
-    desc: 'Portfolio SPA; banking TypeScript SPA; healthcare npm workspaces (Express + Vite apps) with CI build matrices',
+    desc: 'Portfolio SPA; bank-app demo TypeScript SPA; healthcare npm workspaces (Express + Vite apps) with CI build matrices',
     icon: CpuChipIcon,
   },
   {
@@ -34,7 +34,7 @@ const skills = [
   },
   {
     label: 'AWS (patterns in repos)',
-    desc: 'Banking: private S3, CloudFront, WAFv2. Healthcare Terraform: VPC, private EKS API, KMS, flow logs, ECR image flows',
+    desc: 'Bank demo: private S3, CloudFront, WAFv2. Healthcare Terraform: VPC, private EKS API, KMS, flow logs, ECR image flows',
     icon: GlobeAltIcon,
   },
   {
@@ -69,7 +69,7 @@ const skills = [
   },
   {
     label: 'Data & auth (demos)',
-    desc: 'Supabase (Postgres, RLS, JWT) for secure-banking; SQLite dev + integration APIs across Healthcare_Apps services',
+    desc: 'Supabase (Postgres, RLS, JWT) for the bank-app demo; SQLite dev + integration APIs across Healthcare_Apps services',
     icon: CircleStackIcon,
   },
   {
@@ -94,7 +94,7 @@ export default function BlueprintSkillsSection() {
             Core <span className="text-gradient-neon">Technologies</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
-            Consolidated from every public project linked here: portfolio DevSecOps repos, secure-banking on AWS, and
+            Consolidated from every public project linked here: portfolio DevSecOps repos, the bank-app AWS demo, and
             Healthcare_Apps (EKS/Terraform monorepo)—same toolchain I highlight for platform, application, and security
             engineering roles.
           </p>

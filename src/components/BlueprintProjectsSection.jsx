@@ -26,7 +26,7 @@ export default function BlueprintProjectsSection() {
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
             Each card links to a public GitHub repo and a{' '}
             <strong className="text-foreground">case study</strong> page with context, pipeline stages, and evidence.
-            Together they span portfolio tooling, banking and healthcare demos: shared security workflows, AWS hosting,
+            Together they span portfolio tooling, bank-app and healthcare demos: shared security workflows, AWS hosting,
             Kubernetes, post-merge assurance, and threat modeling.
           </p>
           <p className="mt-6">

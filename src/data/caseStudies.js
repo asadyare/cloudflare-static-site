@@ -56,9 +56,9 @@ export const projectCategories = [
   },
   {
     id: 'bank-app-projects',
-    label: 'Bank application',
+    label: 'Financial services (demo)',
     description:
-      'Secure banking demo: Vite + Supabase SPA on AWS with Terraform, hardened CI/CD, and in-repo threat model / risk analysis.',
+      'Banking-style SPA on AWS: Vite + Supabase, Terraform (S3/CloudFront/WAF), hardened GitHub Actions, and in-repo threat model / case study.',
     order: 2,
   },
   {
@@ -358,8 +358,8 @@ export const caseStudies = [
   {
     slug: 'secure-banking-app',
     category: 'bank-app-projects',
-    title: 'Secure banking web app (demo)',
-    shortTitle: 'secure-banking-app',
+    title: 'Banking web application (demo)',
+    shortTitle: 'Bank app demo',
     repoUrl: 'https://github.com/asadyare/secure-banking-app',
     createdAt: '2026-03-12T16:11:52Z',
     badgeUrl: 'https://github.com/asadyare/secure-banking-app/actions/workflows/ci.yml/badge.svg',
@@ -368,7 +368,7 @@ export const caseStudies = [
     icon: BuildingOffice2Icon,
     accent: 'primary',
     goal:
-      'Vite + React + TypeScript banking SPA with Supabase; S3 + CloudFront via Terraform; GitHub Actions deploy with OIDC; six overlapping scanners gating merge plus documented incident log.',
+      'Vite + React + TypeScript SPA (banking-style product) with Supabase; S3 + CloudFront via Terraform; GitHub Actions deploy with OIDC; overlapping scanners gating merge plus documented incident log.',
     tech: [
       'Vite',
       'React',
@@ -387,7 +387,7 @@ export const caseStudies = [
     ],
     caseStudy: {
       summary:
-        'A portfolio-grade secure banking demo: Vite + React + TypeScript, Supabase for auth and data, and AWS static hosting (private S3 origin, CloudFront, WAFv2) provisioned as code. CI/CD runs Semgrep, CodeQL (default setup), Trivy (fs + IaC + image posture), Checkov on Terraform, ZAP baseline on the built SPA, TruffleHog, Gitleaks (also in git hooks), Dependabot, Dependency Review, npm audit, and CycloneDX SBOM — plus `docs/threat-model-risk-analysis.md` for STRIDE, trust boundaries, and qualitative risk, and `docs/case-study/` documenting 19 blocking incidents from first green pipeline to first live deploy.',
+        'A portfolio-grade demo of a banking-style product: Vite + React + TypeScript, Supabase for auth and data, and AWS static hosting (private S3 origin, CloudFront, WAFv2) provisioned as code. CI/CD runs Semgrep, CodeQL (default setup), Trivy (fs + IaC + image posture), Checkov on Terraform, ZAP baseline on the built SPA, TruffleHog, Gitleaks (also in git hooks), Dependabot, Dependency Review, npm audit, and CycloneDX SBOM — plus `docs/threat-model-risk-analysis.md` for STRIDE, trust boundaries, and qualitative risk, and `docs/case-study/` documenting 19 blocking incidents from first green pipeline to first live deploy.',
       context: [
         'The repository doubles as a teaching artefact: `docs/case-study/` walks through architecture (runtime, CI/CD, OIDC trust), per-scanner controls, and a chronological incident log with deep-dives and suppression rationale.',
         'Threat modeling and inherent-risk analysis for the same app live in `docs/threat-model-risk-analysis.md` (aligned with Supabase RLS, JWT, and the static SPA threat surface).',
@@ -438,7 +438,7 @@ export const caseStudies = [
         'Terraform README + Checkov custom policies for organisation-specific guardrails.',
       ],
       evidence: [
-        'Public repo: https://github.com/asadyare/secure-banking-app',
+        'Public GitHub repository: https://github.com/asadyare/secure-banking-app',
         'Threat model & risk analysis: https://github.com/asadyare/secure-banking-app/blob/main/docs/threat-model-risk-analysis.md',
         'Case study index: https://github.com/asadyare/secure-banking-app/tree/main/docs/case-study',
         'Incident log and per-incident files under `docs/case-study/` (19 items with PR and workflow proof).',
